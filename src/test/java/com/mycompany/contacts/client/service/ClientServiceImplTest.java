@@ -23,7 +23,7 @@ class ClientServiceImplTest {
     Client client;
 
     @BeforeEach
-    void BeforeEach() {
+    void beforeEach() {
         repository = mock(ClientRepository.class);
         service = new ClientServiceImpl(repository);
         client = Client.builder()

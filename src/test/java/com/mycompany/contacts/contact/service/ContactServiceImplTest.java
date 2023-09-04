@@ -33,7 +33,7 @@ class ContactServiceImplTest {
     Contact contact;
 
     @BeforeEach
-    void BeforeEach() {
+    void beforeEach() {
         captor = ArgumentCaptor.forClass(Contact.class);
         repository = mock(ContactRepository.class);
         clientRepository = mock(ClientRepository.class);
