@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -14,8 +15,10 @@
 	<name>client-contacts</name>
 
 	<properties>
-		<java.version>11</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.release>11</maven.compiler.release>
+		<maven.compiler.source>11</maven.compiler.source>
+		<maven.compiler.target>11</maven.compiler.target>
 		<qСlassDirectory>target/generated-sources/java</qСlassDirectory>
 	</properties>
 	<dependencies>
@@ -34,6 +37,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 
 		<dependency>
@@ -60,6 +68,12 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
 			<groupId>com.querydsl</groupId>
 			<artifactId>querydsl-jpa</artifactId>
 			<version>5.0.0</version>
@@ -77,22 +91,35 @@
 
 		<resources>
 			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+			<resource>
 				<directory>${qСlassDirectory}</directory>
 			</resource>
 		</resources>
 
 		<plugins>
+
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
-					<excludes>
-						<exclude>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</exclude>
-					</excludes>
+					<systemPropertyVariables>
+						<spring.profiles.active>test</spring.profiles.active>
+					</systemPropertyVariables>
 				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-report-plugin</artifactId>
+				<version>3.1.2</version>
 			</plugin>
 
 			<plugin>
@@ -120,6 +147,23 @@
 						<version>10.3</version>
 					</dependency>
 				</dependencies>
+			</plugin>
+
+			<plugin>
+				<groupId>com.github.spotbugs</groupId>
+				<artifactId>spotbugs-maven-plugin</artifactId>
+				<version>4.7.0.0</version>
+				<configuration>
+					<effort>Max</effort>
+					<threshold>High</threshold>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 
 			<plugin>
@@ -183,14 +227,14 @@
 					</plugin>
 				</plugins>
 			</build>
-<!--			<reporting>-->
-<!--				<plugins>-->
-<!--					<plugin>-->
-<!--						<groupId>com.github.spotbugs</groupId>-->
-<!--						<artifactId>spotbugs-maven-plugin</artifactId>-->
-<!--					</plugin>-->
-<!--				</plugins>-->
-<!--			</reporting>-->
+			<reporting>
+				<plugins>
+					<plugin>
+						<groupId>com.github.spotbugs</groupId>
+						<artifactId>spotbugs-maven-plugin</artifactId>
+					</plugin>
+				</plugins>
+			</reporting>
 		</profile>
 	</profiles>
 

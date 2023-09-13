@@ -1,0 +1,22 @@
+version: '3.1'
+
+services:
+  client_contacts:
+    build: .
+    container_name: client_contacts
+    ports:
+      - "8080:8080"
+    depends_on:
+      - client_contacts-db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://client_contacts-db:5432/contacts?encoding=utf8
+
+  client_contacts-db:
+    image: postgres:14.6-alpine
+    container_name: client_contacts_postgres_14_6
+    ports:
+      - "5541:5432"
+    environment:
+      - POSTGRES_DB=contacts
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
