@@ -17,7 +17,7 @@ API должно обеспечивать следующие функции:
 ## Комментарии к решению
 API можно посмотреть:
 - В документации swagger, которую можно скачать [здесь](https://github.com/KokotAlex/Contacts/blob/main/api-spec.json)
-- В Postman [здесь](https://github.com/KokotAlex/Contacts/blob/main/postman/ContactsAPI.postman_collection.json)
+- В Postman [здесь](https://github.com/KokotAlex/Contacts/blob/main/Postman/ContactsAPI.json)
 
 Дополнительно к основному заданию:
 - Код проекта покрыт Unit тестами
