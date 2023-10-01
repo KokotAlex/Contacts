@@ -15,6 +15,8 @@ API должно обеспечивать следующие функции:
 Реализованный проект с описанием ендпоинтов разаработанного API выложить на GIT и предоставить ссылку.
 
 ## Комментарии к решению
+Используемый стек: Java, Spring Boot, Maven, Hibernate, SQL DSL, Lomboc, junit, Swagger, PostgreSQL, Docker, RESTful API, Postman
+
 API можно посмотреть:
 - В документации swagger, которую можно скачать [здесь](https://github.com/KokotAlex/Contacts/blob/main/api-spec.json). Веб версия документации после запуска приложения доступна по адресу: http://127.0.0.1:8080/swagger-ui/index.html
 - В Postman [здесь](https://github.com/KokotAlex/Contacts/blob/main/Postman/ContactsAPI.json)
